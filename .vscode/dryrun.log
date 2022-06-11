@@ -1,0 +1,9 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/workspace/BPC'
+if [ -d "build" ]; then rm -rf build; fi
+mkdir build
+g++ src/main.cpp -o build/bpc-linux
+x86_64-w64-mingw32-g++ src/main.cpp -o build/bpc-win64.exe
+i686-w64-mingw32-g++ src/main.cpp -o build/bpc-win32.exe
+make: Leaving directory '/workspace/BPC'
+ 
