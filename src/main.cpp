@@ -3,7 +3,9 @@
 #include <cstdlib>
 #include "./timer.cpp"
 
-int main() {
-    printf("Hello, %s!\n", getenv("USER"));
+int main(int argc, char *argv[]) {
+    Timer *t = new Timer(15000);
+    t -> start();
+
     return 0;
 }

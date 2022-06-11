@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jun 11 18:05:35 2022
+# Make data base, printed on Sat Jun 11 19:03:32 2022
 
 # Variables
 
@@ -194,7 +194,6 @@ rvm_version = 1.29.12 (latest)
 %D = $(patsubst %/,%,$(dir $%))
 # environment
 GITPOD_REPO_ROOT = /workspace/BPC
- 
 # environment
 PIP_USER = no
 # environment
@@ -298,9 +297,9 @@ MY_RUBY_HOME = /home/gitpod/.rvm/rubies/ruby-2.7.6
 
 # Directories
 
-# . (device 2346, inode 806046217): 10 files, no impossibilities.
+# . (device 2346, inode 806046217): 11 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -320,12 +319,12 @@ win64:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 15):
-	x86_64-w64-mingw32-g++ src/main.cpp -o build/bpc-win64.exe
+	x86_64-w64-mingw32-g++ -pthread src/main.cpp -o build/bpc-win64.exe
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-11 18:05:15.738986173
+#  Last modified 2022-06-11 19:02:14.202608472
 #  File has been updated.
 #  Successfully updated.
 
@@ -352,12 +351,12 @@ win32:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 18):
-	i686-w64-mingw32-g++ src/main.cpp -o build/bpc-win32.exe
+	i686-w64-mingw32-g++ -pthread src/main.cpp -o build/bpc-win32.exe
 
 # Not a target:
 .DEFAULT:
- 
 #  Implicit rule search has not been done.
+ 
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -384,7 +383,7 @@ linux:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 10):
-	g++ src/main.cpp -o build/bpc-linux
+	g++ -pthread src/main.cpp -o build/bpc-linux
 
 # files hash-table stats:
 # Load=13/1024=1%, Rehash=0, Collisions=3/38=8%
@@ -394,12 +393,12 @@ linux:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 23 / storage = 177 B / avg = 7 B
-# current buf: size = 8162 B / used = 177 B / count = 23 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 24 / storage = 186 B / avg = 7 B
+# current buf: size = 8162 B / used = 186 B / count = 24 / avg = 7 B
 
-# strcache performance: lookups = 45 / hit rate = 48%
+# strcache performance: lookups = 46 / hit rate = 47%
 # hash-table stats:
-# Load=23/8192=0%, Rehash=0, Collisions=1/45=2%
-# Finished Make data base on Sat Jun 11 18:05:35 2022
+# Load=24/8192=0%, Rehash=0, Collisions=1/46=2%
+# Finished Make data base on Sat Jun 11 19:03:32 2022
 
  
