@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jun 11 19:03:32 2022
+# Make data base, printed on Sat Jun 11 19:13:35 2022
 
 # Variables
 
@@ -297,9 +295,9 @@ MY_RUBY_HOME = /home/gitpod/.rvm/rubies/ruby-2.7.6
 
 # Directories
 
-# . (device 2346, inode 806046217): 11 files, no impossibilities.
+# . (device 2346, inode 806046217): 10 files, no impossibilities.
 
-# 11 files, no impossibilities in 1 directories.
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -314,17 +312,10 @@ all:
 #  File does not exist.
 #  File has not been updated.
 
-win64:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 15):
-	x86_64-w64-mingw32-g++ -pthread src/main.cpp -o build/bpc-win64.exe
-
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-11 19:02:14.202608472
+#  Last modified 2022-06-11 19:11:23.670547871
 #  File has been updated.
 #  Successfully updated.
 
@@ -337,7 +328,7 @@ run-linux:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 23):
+#  recipe to execute (from 'Makefile', line 34):
 	@echo "----------------------------------------------------------"
 	./build/bpc-linux
 
@@ -346,24 +337,19 @@ default: build
 #  Modification time never checked.
 #  File has not been updated.
 
-win32:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-#  recipe to execute (from 'Makefile', line 18):
-	i686-w64-mingw32-g++ -pthread src/main.cpp -o build/bpc-win32.exe
-
 # Not a target:
 .DEFAULT:
 #  Implicit rule search has not been done.
- 
 #  Modification time never checked.
 #  File has not been updated.
 
-win: win64 win32
+win:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+#  recipe to execute (from 'Makefile', line 28):
+	x86_64-w64-mingw32-g++ src/main.cpp -o build/bpc-windows-x64.exe
+	i686-w64-mingw32-g++ src/main.cpp -o build/bpc-windows-x86.exe
 
 build-setup:
 #  Implicit rule search has not been done.
@@ -383,22 +369,39 @@ linux:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 10):
-	g++ -pthread src/main.cpp -o build/bpc-linux
+	aarch64-linux-gnu-g++ src/main.cpp -o build/bpc-linux-aarch64
+	alpha-linux-gnu-g++ src/main.cpp -o build/bpc-linux-alpha
+	arm-linux-gnueabi-g++ src/main.cpp -o build/bpc-linux-arm-gnueabi
+	arm-linux-gnueabihf-g++ src/main.cpp -o build/bpc-linux-arm-gnueabihf
+	i686-linux-gnu-g++ src/main.cpp -o build/bpc-linux-i686
+	m68k-linux-gnu-g++ src/main.cpp -o build/bpc-linux-m68k
+	mips-linux-gnu-g++ src/main.cpp -o build/bpc-linux-mips
+	mipsel-linux-gnu-g++ src/main.cpp -o build/bpc-linux-mipsel
+	powerpc-linux-gnu-g++ src/main.cpp -o build/bpc-linux-ppc
+	powerpc64-linux-gnu-g++ src/main.cpp -o build/bpc-linux-ppc64
+	powerpc64le-linux-gnu-g++ src/main.cpp -o build/bpc-linux-ppc64le
+	riscv64-linux-gnu-g++ src/main.cpp -o build/bpc-linux-riscv64
+	s390x-linux-gnu-g++ src/main.cpp -o build/bpc-linux-s390x
+	sh4-linux-gnu-g++ src/main.cpp -o build/bpc-linux-sh4
+	sparc64-linux-gnu-g++ src/main.cpp -o build/bpc-linux-sparc64
+	x86_64-linux-gnu-g++ src/main.cpp -o build/bpc-linux-x86_64
 
 # files hash-table stats:
-# Load=13/1024=1%, Rehash=0, Collisions=3/38=8%
+# Load=11/1024=1%, Rehash=0, Collisions=0/32=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 24 / storage = 186 B / avg = 7 B
-# current buf: size = 8162 B / used = 186 B / count = 24 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 21 / storage = 165 B / avg = 7 B
+# current buf: size = 8162 B / used = 165 B / count = 21 / avg = 7 B
 
-# strcache performance: lookups = 46 / hit rate = 47%
+# strcache performance: lookups = 39 / hit rate = 46%
 # hash-table stats:
-# Load=24/8192=0%, Rehash=0, Collisions=1/46=2%
-# Finished Make data base on Sat Jun 11 19:03:32 2022
+# Load=21/8192=0%, Rehash=0, Collisions=1/39=3%
+# Finished Make data base on Sat Jun 11 19:13:35 2022
 
  
+make: *** No rule to make target 'all'.  Stop.
+
