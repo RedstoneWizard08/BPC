@@ -16,7 +16,7 @@ class Timer {
         /**
          * Get the current time.
          * Formats: 0 = milliseconds, 1 = seconds, 2 = minutes, 3 = hours
-         * 
+         *
          * @param format The format in which to return the current time. Default: 0
          * @return The current time in the specified format.
          */

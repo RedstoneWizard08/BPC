@@ -3,13 +3,9 @@
 #include <windows.h>
 #include <winuser.h>
 
-void shutdown() {
-    ExitWindowsEx(EWX_POWEROFF, SHTDN_REASON_MINOR_OTHER);
-}
+void shutdown() { ExitWindowsEx(EWX_POWEROFF, SHTDN_REASON_MINOR_OTHER); }
 #endif
 
 #ifdef __linux__
-void shutdown() {
-    system("poweroff");
-}
+void shutdown() { system("poweroff"); }
 #endif

@@ -1,4 +1,6 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -6,7 +8,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jun 11 19:13:35 2022
+# Make data base, printed on Sat Jun 11 20:11:23 2022
 
 # Variables
 
@@ -163,6 +165,7 @@ GEM_PATH = /home/gitpod/.rvm/gems/ruby-2.7.6:/home/gitpod/.rvm/gems/ruby-2.7.6@g
 # environment
 SDKMAN_VERSION = 5.15.0
 # default
+ 
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
@@ -295,9 +298,9 @@ MY_RUBY_HOME = /home/gitpod/.rvm/rubies/ruby-2.7.6
 
 # Directories
 
-# . (device 2346, inode 806046217): 10 files, no impossibilities.
+# . (device 2346, inode 806046217): 13 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 13 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -315,11 +318,12 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-11 19:11:23.670547871
+#  Last modified 2022-06-11 20:11:06.462153034
 #  File has been updated.
 #  Successfully updated.
+ 
 
-build: build-setup linux win
+build: build-setup linux win finish
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -328,9 +332,9 @@ run-linux:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 34):
+#  recipe to execute (from 'Makefile', line 37):
 	@echo "----------------------------------------------------------"
-	./build/bpc-linux
+	./build/bpc-linux-x86_64
 
 default: build
 #  Implicit rule search has not been done.
@@ -364,6 +368,13 @@ run: build run-linux
 #  Modification time never checked.
 #  File has not been updated.
 
+finish:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 32):
+	chmod -R a+rwx build
+
 linux:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -387,21 +398,19 @@ linux:
 	x86_64-linux-gnu-g++ src/main.cpp -o build/bpc-linux-x86_64
 
 # files hash-table stats:
-# Load=11/1024=1%, Rehash=0, Collisions=0/32=0%
+# Load=12/1024=1%, Rehash=0, Collisions=0/35=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 21 / storage = 165 B / avg = 7 B
-# current buf: size = 8162 B / used = 165 B / count = 21 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 25 / storage = 213 B / avg = 8 B
+# current buf: size = 8162 B / used = 213 B / count = 25 / avg = 8 B
 
-# strcache performance: lookups = 39 / hit rate = 46%
+# strcache performance: lookups = 45 / hit rate = 44%
 # hash-table stats:
-# Load=21/8192=0%, Rehash=0, Collisions=1/39=3%
-# Finished Make data base on Sat Jun 11 19:13:35 2022
+# Load=25/8192=0%, Rehash=0, Collisions=1/45=2%
+# Finished Make data base on Sat Jun 11 20:11:23 2022
 
  
-make: *** No rule to make target 'all'.  Stop.
-

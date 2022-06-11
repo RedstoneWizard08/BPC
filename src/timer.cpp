@@ -1,9 +1,9 @@
+#include "./util.cpp"
+#include <chrono>
+#include <cstdlib>
+#include <ctime>
 #include <stdio.h>
 #include <time.h>
-#include <chrono>
-#include <ctime>
-#include <cstdlib>
-#include "./util.cpp"
 
 class Timer {
     public:
@@ -36,25 +36,30 @@ class Timer {
         /**
          * An internal function for running the timer.
          */
-        void *run() {
-            while(true) {
-                if(stopped == false) {
-                    if(current == total) {
+        void run() {
+            while (true) {
+                if (stopped == false) {
+                    if (current == total) {
                         shutdown();
                         exit(0);
                     }
 
-                    if(needsStart) {
+                    if (needsStart) {
                         startTime = std::chrono::system_clock::now();
                         needsStart = false;
                     } else {
-                        std::chrono::system_clock::time_point point = std::chrono::system_clock::now();
+                        std::chrono::system_clock::time_point point =
+                            std::chrono::system_clock::now();
                         std::chrono::duration<double> elapsed = point - startTime;
                         current = elapsed.count() * 1000;
                         remaining = total - current;
 
-                        if((current % 1000) == 0 && last != current) {
-                            printf("------------------\nCurrent time: %is\nRemaining: %is\nTotal time: %is\n------------------\n", (current / 1000), (remaining / 1000), (total / 1000));
+                        if ((current % 1000) == 0 && last != current) {
+                            printf(
+                                "------------------\nCurrent time: %is\nRemaining: "
+                                "%is\nTotal time: %is\n------------------\n",
+                                (current / 1000), (remaining / 1000),
+                                (total / 1000));
                             last = current;
                         }
                     }
@@ -90,16 +95,16 @@ class Timer {
         /**
          * Get the current time.
          * Formats: 0 = milliseconds, 1 = seconds, 2 = minutes, 3 = hours
-         * 
+         *
          * @param format The format in which to return the current time. Default: 0
          * @return The current time in the specified format.
          */
         int getCurrentTime(int format = 0) {
-            if(format == 1) {
+            if (format == 1) {
                 return current / 1000;
-            } else if(format == 2) {
+            } else if (format == 2) {
                 return (current / 1000) / 60;
-            } else if(format == 3) {
+            } else if (format == 3) {
                 return ((current / 1000) / 60) / 60;
             } else {
                 return current;
@@ -115,9 +120,7 @@ class Timer {
             run();
         }
 
-        void setCurrent(int cur) {
-            current = cur;
-        }
+        void setCurrent(int cur) { current = cur; }
 
         void setStartTime(std::chrono::system_clock::time_point p) {
             startTime = p;

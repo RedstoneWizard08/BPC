@@ -20,5 +20,6 @@ sparc64-linux-gnu-g++ src/main.cpp -o build/bpc-linux-sparc64
 x86_64-linux-gnu-g++ src/main.cpp -o build/bpc-linux-x86_64
 x86_64-w64-mingw32-g++ src/main.cpp -o build/bpc-windows-x64.exe
 i686-w64-mingw32-g++ src/main.cpp -o build/bpc-windows-x86.exe
+chmod -R a+rwx build
 make: Leaving directory '/workspace/BPC'
  
