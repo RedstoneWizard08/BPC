@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jun 11 20:11:23 2022
+# Make data base, printed on Sat Jun 11 20:43:26 2022
 
 # Variables
 
@@ -68,6 +68,8 @@ VSCODE_VERBOSE_LOGGING = true
 THEIA_WORKSPACE_ROOT = /workspace/BPC
 # environment
 INFOPATH = :/home/linuxbrew/.linuxbrew/share/info
+# makefile (from 'Makefile', line 1)
+CPP_OPTS := -v
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -165,7 +167,6 @@ GEM_PATH = /home/gitpod/.rvm/gems/ruby-2.7.6:/home/gitpod/.rvm/gems/ruby-2.7.6@g
 # environment
 SDKMAN_VERSION = 5.15.0
 # default
- 
 MAKE = $(MAKE_COMMAND)
 # default
 MAKECMDGOALS := all
@@ -290,7 +291,7 @@ VSCODE_EXTHOST_WILL_SEND_SOCKET = true
 # environment
 MY_RUBY_HOME = /home/gitpod/.rvm/rubies/ruby-2.7.6
 # variable set hash-table stats:
-# Load=138/1024=13%, Rehash=0, Collisions=13/163=8%
+# Load=139/1024=14%, Rehash=0, Collisions=13/164=8%
 
 # Pattern-specific Variable Values
 
@@ -298,9 +299,9 @@ MY_RUBY_HOME = /home/gitpod/.rvm/rubies/ruby-2.7.6
 
 # Directories
 
-# . (device 2346, inode 806046217): 13 files, no impossibilities.
+# . (device 2346, inode 806046217): 16 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 16 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -318,10 +319,9 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-11 20:11:06.462153034
+#  Last modified 2022-06-11 20:38:24.317972536
 #  File has been updated.
 #  Successfully updated.
- 
 
 build: build-setup linux win finish
 #  Implicit rule search has not been done.
@@ -332,7 +332,7 @@ run-linux:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 37):
+#  recipe to execute (from 'Makefile', line 86):
 	@echo "----------------------------------------------------------"
 	./build/bpc-linux-x86_64
 
@@ -351,17 +351,19 @@ win:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 28):
-	x86_64-w64-mingw32-g++ src/main.cpp -o build/bpc-windows-x64.exe
-	i686-w64-mingw32-g++ src/main.cpp -o build/bpc-windows-x86.exe
+#  recipe to execute (from 'Makefile', line 61):
+	@echo "Building windows-x86_64..." | tee -a build.log
+	@x86_64-w64-mingw32-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-windows-x64.exe >> build.log 2>&1
+	@echo "Building windows-i686..." | tee -a build.log
+	@i686-w64-mingw32-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-windows-x86.exe >> build.log 2>&1
 
 build-setup:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 6):
-	if [ -d "build" ]; then rm -rf build; fi
-	mkdir build
+#  recipe to execute (from 'Makefile', line 8):
+	@if [ -d "build" ]; then rm -rf build; fi
+	@mkdir build
 
 run: build run-linux
 #  Implicit rule search has not been done.
@@ -372,45 +374,92 @@ finish:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 32):
-	chmod -R a+rwx build
+#  recipe to execute (from 'Makefile', line 68):
+	@echo "Packing executables..." | tee -a build.log
+	@upx --best build/bpc-linux-aarch64 build/bpc-linux-mips build/bpc-linux-mipsel \
+		build/bpc-linux-ppc build/bpc-linux-ppc64 build/bpc-linux-ppc64le \
+		build/bpc-windows-x64.exe build/bpc-windows-x86.exe >> build.log 2>&1
+	@echo "Testing packed executables..." | tee -a build.log
+	@upx -t build/bpc-linux-aarch64 build/bpc-linux-mips build/bpc-linux-mipsel \
+		build/bpc-linux-ppc build/bpc-linux-ppc64 build/bpc-linux-ppc64le \
+		build/bpc-windows-x64.exe build/bpc-windows-x86.exe >> build.log 2>&1
+	
+	@echo "Changing permissions of the files..." | tee -a build.log
+	@chmod -R a+rx build >> build.log 2>&1
+	@echo "Done!" | tee -a build.log
 
 linux:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 10):
-	aarch64-linux-gnu-g++ src/main.cpp -o build/bpc-linux-aarch64
-	alpha-linux-gnu-g++ src/main.cpp -o build/bpc-linux-alpha
-	arm-linux-gnueabi-g++ src/main.cpp -o build/bpc-linux-arm-gnueabi
-	arm-linux-gnueabihf-g++ src/main.cpp -o build/bpc-linux-arm-gnueabihf
-	i686-linux-gnu-g++ src/main.cpp -o build/bpc-linux-i686
-	m68k-linux-gnu-g++ src/main.cpp -o build/bpc-linux-m68k
-	mips-linux-gnu-g++ src/main.cpp -o build/bpc-linux-mips
-	mipsel-linux-gnu-g++ src/main.cpp -o build/bpc-linux-mipsel
-	powerpc-linux-gnu-g++ src/main.cpp -o build/bpc-linux-ppc
-	powerpc64-linux-gnu-g++ src/main.cpp -o build/bpc-linux-ppc64
-	powerpc64le-linux-gnu-g++ src/main.cpp -o build/bpc-linux-ppc64le
-	riscv64-linux-gnu-g++ src/main.cpp -o build/bpc-linux-riscv64
-	s390x-linux-gnu-g++ src/main.cpp -o build/bpc-linux-s390x
-	sh4-linux-gnu-g++ src/main.cpp -o build/bpc-linux-sh4
-	sparc64-linux-gnu-g++ src/main.cpp -o build/bpc-linux-sparc64
-	x86_64-linux-gnu-g++ src/main.cpp -o build/bpc-linux-x86_64
+#  recipe to execute (from 'Makefile', line 12):
+	@echo "Building linux-arm64..." | tee build.log
+	@aarch64-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-aarch64 >> build.log 2>&1
+	@echo "Building linux-alpha..." | tee -a build.log
+	@alpha-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-alpha >> build.log 2>&1
+	
+	@echo "Building linux-arm..." | tee -a build.log
+	@arm-linux-gnueabi-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-arm >> build.log 2>&1
+	
+	@echo "Building linux-armhf..." | tee -a build.log
+	@arm-linux-gnueabihf-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-armhf >> build.log 2>&1
+	@echo "Building linux-i686..." | tee -a build.log
+	@i686-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-i686 >> build.log 2>&1
+	
+	@echo "Building linux-m68k..." | tee -a build.log
+	@m68k-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-m68k >> build.log 2>&1
+	
+	@echo "Building linux-mips..." | tee -a build.log
+	@mips-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-mips >> build.log 2>&1
+	
+	@echo "Building linux-mipsel..." | tee -a build.log
+	@mipsel-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-mipsel >> build.log 2>&1
+	
+	@echo "Building linux-ppc..." | tee -a build.log
+	@powerpc-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-ppc >> build.log 2>&1
+	
+	@echo "Building linux-ppc64..." | tee -a build.log
+	@powerpc64-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-ppc64 >> build.log 2>&1
+	
+	@echo "Building linux-ppc64le..." | tee -a build.log
+	@powerpc64le-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-ppc64le >> build.log 2>&1
+	
+	@echo "Building linux-riscv64..." | tee -a build.log
+	@riscv64-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-riscv64 >> build.log 2>&1
+	
+	@echo "Building linux-s390x..." | tee -a build.log
+	@s390x-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-s390x >> build.log 2>&1
+	
+	@echo "Building linux-sh4..." | tee -a build.log
+	@sh4-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-sh4 >> build.log 2>&1
+	
+	@echo "Building linux-sparc64..." | tee -a build.log
+	@sparc64-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-sparc64 >> build.log 2>&1
+	
+	@echo "Building linux-x86_64..." | tee -a build.log
+	@x86_64-linux-gnu-g++ $(CPP_OPTS) src/main.cpp -o build/bpc-linux-x86_64 >> build.log 2>&1
+
+dev-build:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 90):
+	g++ src/main.cpp -o bpc
 
 # files hash-table stats:
-# Load=12/1024=1%, Rehash=0, Collisions=0/35=0%
+# Load=13/1024=1%, Rehash=0, Collisions=0/36=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 25 / storage = 213 B / avg = 8 B
-# current buf: size = 8162 B / used = 213 B / count = 25 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 29 / storage = 246 B / avg = 8 B
+# current buf: size = 8162 B / used = 246 B / count = 29 / avg = 8 B
 
-# strcache performance: lookups = 45 / hit rate = 44%
+# strcache performance: lookups = 50 / hit rate = 42%
 # hash-table stats:
-# Load=25/8192=0%, Rehash=0, Collisions=1/45=2%
-# Finished Make data base on Sat Jun 11 20:11:23 2022
+# Load=29/8192=0%, Rehash=0, Collisions=1/50=2%
+# Finished Make data base on Sat Jun 11 20:43:26 2022
 
  

@@ -85,3 +85,6 @@ run: build run-linux
 run-linux:
 	@echo "----------------------------------------------------------"
 	./build/bpc-linux-x86_64
+
+dev-build:
+	g++ src/main.cpp -o bpc
