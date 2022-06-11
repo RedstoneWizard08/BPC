@@ -18,7 +18,7 @@ jobs:
             g++-powerpc64-linux-gnu g++-powerpc64le-linux-gnu g++-riscv64-linux-gnu \
             g++-s390x-linux-gnu g++-sh4-linux-gnu g++-sparc64-linux-gnu \
             g++-x86-64-linux-gnu g++-mingw-w64-i686 g++-mingw-w64-x86-64 \
-            g++-mingw-w64 g++ make
+            g++-mingw-w64 g++ make upx-ucl
       
       - name: Build
         run: make
