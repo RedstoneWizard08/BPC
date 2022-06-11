@@ -28,3 +28,9 @@ jobs:
         with:
           name: Executables
           path: build/
+      
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: RELEASE-BODY.md
+          files: build/*
