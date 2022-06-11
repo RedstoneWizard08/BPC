@@ -1,6 +1,7 @@
 #!/bin/bash
 
-sudo apt-get update sudo apt-get-y install g++-aarch64-linux-gnu \
+sudo apt-get update
+sudo apt-get -y install g++-aarch64-linux-gnu \
     g++-alpha-linux-gnu g++-arm-linux-gnueabi g++-arm-linux-gnueabihf \
     g++-i686-linux-gnu g++-m68k-linux-gnu g++-mips-linux-gnu \
     g++-mipsel-linux-gnu g++-powerpc-linux-gnu g++-powerpc64-linux-gnu \
