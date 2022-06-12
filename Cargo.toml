@@ -1,0 +1,13 @@
+[package]
+name = "bpc"
+version = "0.1.0"
+edition = "2021"
+authors = ["RedstoneWizard08"]
+description = "A parental controls software that does things right."
+readme = "https://github.com/RedstoneWizard08/BPC/blob/main/README.md"
+homepage = "https://github.com/RedstoneWizard08/BPC"
+documentation = "https://github.com/RedstoneWizard08/BPC/wiki"
+repository = "https://github.com/RedstoneWizard08/BPC"
+
+[dependencies]
+system_shutdown = "3.0.0"
